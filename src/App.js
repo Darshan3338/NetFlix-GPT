@@ -1,10 +1,10 @@
+import React from 'react';
+import BodyCompo from './Components/BodyCompo';
 
-import './App.css';
-
-function App() {
+const App = () => {
   return (
-    <div className="text-3xl font-bold text-green-800">
-      <h1>Hello, Hi,..</h1>
+    <div>
+      <BodyCompo/>
     </div>
   );
 }
