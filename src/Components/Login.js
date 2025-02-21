@@ -1,5 +1,5 @@
 import HeaderCompo from "./HeaderCompo";
-import { BG_MOVIE } from "../utils/constants";
+import { BG_MOVIE, LOG_OUT } from "../utils/constants";
 import { useRef, useState } from "react";
 import { checkValidationData } from "../utils/Validation";
 import {
@@ -8,7 +8,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
@@ -17,7 +16,7 @@ const Login = () => {
   const [errorMessage, seterrorMessage] = useState(false);
   const Dispatch = useDispatch();
 
-  const navigate = useNavigate();
+ 
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
@@ -49,7 +48,7 @@ const Login = () => {
           updateProfile(user, {
             displayName: name.current.value,
             photoURL:
-              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSpliwKoEf47NMoBRnzGQqlgBDk_XHxfMu5mUm1rLhGp28qIMIgnxYQJ7VkF9EYV5ukm66YvMPc7caxJyan6i6wNEZiLhAtQYfafP0S",
+                    LOG_OUT,   
           })
             .then(() => {
               // Profile updated!
@@ -62,7 +61,6 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse")
             })
             .catch((error) => {
               seterrorMessage(error.message);
@@ -84,8 +82,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
+          // console.log(user);
         })
 
         .catch((error) => {
