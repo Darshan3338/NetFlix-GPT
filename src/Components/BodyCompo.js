@@ -24,6 +24,7 @@ const BodyCompo = () => {
       path: "/browse",
       element: <BrowseCompo />,
     },
+   
   ]);
 
   //i need to render once so we are using useEffect
