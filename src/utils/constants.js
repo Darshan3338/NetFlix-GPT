@@ -16,3 +16,12 @@ export const API_OPTIONS = {
     .then(res => res.json())
     .then(res => console.log(res))
     .catch(err => console.error(err));
+
+    export const IMG_CDN_URL="https://image.tmdb.org/t/p/w500/"
+    export const POPULAR_URL="https://api.themoviedb.org/3/movie/popular?page=1"
+    export const SUPPORTED_LANGUGES = [{identifier:"en", name:"English"},
+      {identifier:"spanish", name:"Spanish"},
+      {identifier:"kannada", name:"Kannada"},
+      {identifier:"hindi", name:"Hindi"},
+
+    ]
