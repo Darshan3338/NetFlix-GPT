@@ -63,8 +63,8 @@ const HeaderCompo = () => {
   };
 
   return (
-    <div className="absolute flex justify-between w-screen px-8 py-5 bg-gradient-to-b from-black z-10">
-      <img className="w-40 z-40" src={NETFLIX_LOG} alt="logo" />
+    <div className="absolute flex justify-between w-screen bg-gradient-to-b from-black z-10 bg-black bg-fixed sm:bg-blue-700 md:bg-green-700 sm:flex-col md:flex-row">
+      <img className="w-40 z-40 mx-auto md:mx-0" src={NETFLIX_LOG} alt="logo" />
 
       {user && (
         <div className="flex p-4">

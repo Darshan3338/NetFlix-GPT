@@ -9,12 +9,13 @@ const SecondaryContainer = () => {
     //if movies avail then only render
     movies.nowPlayingMovies &&(
     <div className='bg-black'>
-      <div className='-mt-40 relative z-10 pl-12'>
-        <MovieList title={"Now Playing"} movies={movies.nowPlayingMovies}/>
-        <MovieList title={"Trending"} movies={movies.nowPlayingMovies}/>
-        <MovieList title={"Popular"} movies={movies.PopularMovies}/>
-        <MovieList title={"Upcomming Movies"} movies={movies.nowPlayingMovies}/>
-        <MovieList title={"Horror Movies"} movies={movies.nowPlayingMovies}/>
+      <div className='s:mt-0 md:-mt-40 relative z-10 pl-4 md:pl-12'>
+       
+              <MovieList title={"Trending"} movies={movies.topRated}/>
+              <MovieList title={"Now Playing"} movies={movies.nowPlayingMovies}/>
+              <MovieList title={"Upcomming"} movies={movies.upcommingMovies}/>
+              <MovieList title={"Popular"} movies={movies.popularMovies}/>
+        
     </div>
     </div>
     )

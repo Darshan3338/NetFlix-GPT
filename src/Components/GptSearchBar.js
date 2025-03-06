@@ -1,19 +1,82 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import lang from '../utils/languageConstants';
 import { useSelector } from 'react-redux';
+import { IMG_CDN_URL } from '../utils/constants';
+// import client from '../utils/openAi';
 
 const GptSearchBar = () => {
     const langKey = useSelector(store => store.config.lang)
+    const searchText = useRef(null)
+    const [filteredMovies,setFilteredMovies] = useState([])
+    console.log(searchText)
+
+    // const handleGptSearchClick = async () =>{
+    //   console.log(searchText.current.value)
+    //   //Make an API call to GPT API and get Movie Results
+    //   const getQuery="Act as a Movie Recommendation system and suggest some movies for the query : " + 
+    //   searchText.current.value + "only give me name of 5 movies, comma seperated like the example result given ahed"
+    //   const gptResults = await client.chat.completions.create({
+    //     messages: [{ role: 'user', content: getQuery }],
+    //     model: 'gpt-4o',
+    //   });
+    //   console.log(gptResults.choices)
+
+    // }
+        
+      const movies = useSelector(store=>store.movies?.PopularMovies || [])
+      console.log("popular movies",movies)
+      // console.log("type" ,typeof movies)
+      // console.log("movies array" ,Array.isArray(movies))
+    
+    const handleGptSearchClick =  () =>{
+      const query = searchText.current.value.toLowerCase()
+      if(!query) {
+        setFilteredMovies([])
+        return
+      }
+
+      const filteredMovies  = movies.filter((m)=>
+       m?.original_title?.toLowerCase().includes(query)
+    )
+    console.log("filtered movies",filteredMovies )
+    setFilteredMovies(filteredMovies )
+
+    }
+   
   return (
-    <div className='pt-[10%] flex justify-center'>
-        <form className=' w-6/12 bg-black grid grid-cols-10'>
-            <input type='text' className='p-4 m-4 col-span-8' 
-            placeholder={lang[langKey].gptSearchPlaceholder}/>
-            <button className='py-2 m-4 px-4 bg-red-700 col-span-2'>
+    <div>
+    <div className='pt-[30%] md:pt-[10%] flex justify-center'>
+        <form className='w-full md:w-6/12 bg-black grid grid-cols-10' onSubmit={(e)=>e.preventDefault()}>
+            <input ref={searchText}
+            type='text' className='p-4 m-4 col-span-8' 
+            placeholder={lang[langKey].gptSearchPlaceholder}
+            />
+            <button className='py-2 m-4 px-4 bg-red-700 col-span-2'
+            onClick={handleGptSearchClick}
+            >
                 {lang[langKey].search}
-                </button>
+                </button>              
         </form>
-    </div>
+         </div>
+     
+        
+          {
+           filteredMovies.length>0 ? (
+            searchText !==null &&
+              
+            <div className='flex sm:flex-col s:p-200 my-10 mx-20 p-20 bg-gray-800 bg-opacity-90 justify-center'>
+             {
+             filteredMovies.map((m)=><div key={m.id} 
+             className='w-40 p-2'>
+              <img className="" src={IMG_CDN_URL + m.poster_path} alt="poater" />
+              
+              </div>)
+             }
+          </div>
+     
+         ) :<p>Search correct movie....</p> }
+        
+     </div>
   );
 }
 
