@@ -100,11 +100,11 @@ const Login = () => {
     <div>
       <HeaderCompo />
       <div className="absolute">
-        <img src={BG_MOVIE} alt="movies-background" />
+        <img className="w-screen object-cover" src={BG_MOVIE} alt="movies-background" />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-4/12 p-20 bg-black bg-opacity-85 absolute my-40 mx-auto right-0 left-0 text-white rounded-xl"
+        className="w-[70%] md:w-4/12 p-20 bg-black bg-opacity-80 absolute my-40 mx-auto right-0 left-0 text-white rounded-xl"
       >
         <h1 className="font-bold text-4xl mb-7 ">
           {IsSignInForm ? "Sign In" : "Sign Up"}
@@ -114,21 +114,21 @@ const Login = () => {
             ref={name}
             type="text"
             placeholder="Full Name"
-            className="p-4 my-2 w-full bg-gray-800 rounded-lg"
+            className="p-4 my-4 w-full bg-gray-600 bg-opacity-30 rounded-lg"
           />
         )}
         <input
           ref={email}
           type="text"
           placeholder="Email Address"
-          className="p-4 my-2 w-full bg-gray-800 rounded-lg"
+          className="p-4 my-4 w-full bg-gray-600 bg-opacity-30 rounded-lg"
         />
 
         <input
           ref={password}
           type="password"
           placeholder="Password"
-          className="p-4 my-2 w-full bg-gray-800 rounded-lg"
+          className="p-4 my-4 w-full bg-gray-600 bg-opacity-30 rounded-lg"
         />
         <p className="text-red-500 font-bold py-4">{errorMessage}</p>
         <button
