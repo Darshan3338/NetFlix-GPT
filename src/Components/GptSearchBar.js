@@ -10,26 +10,14 @@ const GptSearchBar = () => {
     const [filteredMovies,setFilteredMovies] = useState([])
     console.log(searchText)
 
-    // const handleGptSearchClick = async () =>{
-    //   console.log(searchText.current.value)
-    //   //Make an API call to GPT API and get Movie Results
-    //   const getQuery="Act as a Movie Recommendation system and suggest some movies for the query : " + 
-    //   searchText.current.value + "only give me name of 5 movies, comma seperated like the example result given ahed"
-    //   const gptResults = await client.chat.completions.create({
-    //     messages: [{ role: 'user', content: getQuery }],
-    //     model: 'gpt-4o',
-    //   });
-    //   console.log(gptResults.choices)
-
-    // }
         
       const movies = useSelector(store=>store.movies?.PopularMovies || [])
       console.log("popular movies",movies)
-      // console.log("type" ,typeof movies)
-      // console.log("movies array" ,Array.isArray(movies))
+      console.log("orginal title",movies.original_title)
+   
     
     const handleGptSearchClick =  () =>{
-      const query = searchText.current.value.toLowerCase()
+      const query = searchText.current?.value.toLowerCase()
       if(!query) {
         setFilteredMovies([])
         return
